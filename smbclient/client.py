@@ -109,15 +109,17 @@ class SMB:
                     return True
                 return False
 
-    def ls(self, dir_path: str, regex="*") -> list:
+    def ls(self, dir_path: str, regex="*", sort_order="desc") -> list:
         """
         Вывести список файлов в директории
         :param dir_path: путь до директории
         :param regex: регулярное выражение для фильтрации имен файлов
+        :param sort_order: порядок сортировки ('asc' - по возрастанию, 'desc' - по убыванию)
         :return: список имен файлов в указанной директории
         """
         if self.check_connection():
             files_list = self.current_connection.listPath(self.service_name, dir_path, pattern=regex)
+            files_list.sort(key=lambda x: x.create_time, reverse=(sort_order == "desc"))
             filenames_list = [file.filename for file in files_list]
             return filenames_list
         else:
