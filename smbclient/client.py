@@ -31,9 +31,7 @@ class SMBConfig(BaseModel):
 class SMB:
     def __init__(self, cfg, log):
         self.log = log
-        print(cfg)
         self.cfg = SMBConfig(**cfg)
-        print(self.cfg)
         self.current_connection: SMBConnection | None = None
         self.service_name = ""
         self.connect()
