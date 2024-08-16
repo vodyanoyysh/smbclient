@@ -186,3 +186,19 @@ class SMB:
         except Exception as err:
             self.log.error(err)
             return False
+
+    def move_file(self, path_from: str, path_to: str):
+        """
+        Переместить файл из одной директории в другую
+        :param path_from: путь до исходного файла
+        :param path_to: путь до новой директории
+        :return:
+        """
+        try:
+            if not self.check_connection():
+                self.connect()
+            self.current_connection.rename(self.service_name, f"{path_from}", f"{path_to}")
+            return True
+        except Exception as err:
+            self.log.error(err)
+            return False

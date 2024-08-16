@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "smbclient"
-version = "0.1.2"
+version = "0.1.3"
 description = ""
 authors = ["d.a.kolesov <d.a.kolesov@s7.ru>"]
 readme = "README.md"
